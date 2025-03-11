@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Date Invitation</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f8f8;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .scene {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        /* Picture container */
+        .picture-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .picture-container span {
+            font-size: 100px;
+        }
+
+        /* Question container */
+        .question-answer-container {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .question-container {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        /* Social media links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover img {
+            transform: scale(1.1);
+        }
+
+        /* QR Code Popup */
+        #qrPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        #qrPopup img {
+            width: 200px;
+            margin-bottom: 10px;
+        }
+
+        .qr-btn {
+            cursor: pointer;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .qr-btn:hover {
+            background: #3e8e41;
+        }
+
+        .close-btn {
+            background: red;
+        }
+
+        .close-btn:hover {
+            background: darkred;
+        }
+
+        /* Buttons */
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .button-link {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 17px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-link:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .question-container {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .button-link {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .picture-container {
+                max-width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scene">
+        <!-- Picture -->
+        <div class="picture-container">
+            <span>😊💖</span>
+        </div>
+
+        <!-- Question container -->
+        <div class="question-answer-container">
+            <div class="question-container">
+                <p>Fantastic! Glad you survived the website. Now for the real test: human interaction. Where do we go from here?</p>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="social-links">
+                <!-- Facebook -->
+                <a href="fb://profile/sumit kumar yadav (Bidya)" onclick="openFacebook(event)" class="social-icon">
+                    <img src="icons8-facebook-48.png" alt="Facebook">
+                </a>
+                
+
+                <!-- Instagram -->
+                <a href="instagram://user?username=sumitrohita" onclick="openInApp(event, 'https://www.instagram.com/sumitrohita')" class="social-icon">
+                    <img src="icons8-instagram-48.png" alt="Instagram">
+                </a>
+
+                <!-- Snapchat -->
+                <a href="snapchat://add/sumitrohita06" onclick="openInApp(event, 'https://www.snapchat.com/add/sumitrohita06')" class="social-icon">
+                    <img src="icons8-snapchat-48.png" alt="Snapchat">
+                </a>
+                <a href="#" class="social-icon" onclick="showQR()">
+                    <img src="icons8-whatsapp-48.png" alt="WhatsApp">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Popup -->
+    <div id="qrPopup">
+        <img src="whatsappqr.png" alt="WhatsApp QR Code" id="qrImage">
+        <br>
+        <button class="qr-btn" onclick="downloadQR()">Download QR</button>
+        <button class="qr-btn close-btn" onclick="closeQR()">Close</button>
+    </div>
+
+    <!-- Navigation Button -->
+    <div class="button-container">
+        <a href="reveal.html" class="button-link">Reveal</a>
+    </div>
+
+    <p>A letter to Anamika_Thapa_ </p>
+
+    <script>
+         function openFacebook(event) {
+        event.preventDefault();
+        var webURL = "https://www.facebook.com/share/1FYv7SFTkJ/"; // Replace with your profile ID
+        
+        // Attempt to open the Facebook app
+        window.location = "fb://profile/sumit kumar yadav (Bidya)"; 
+
+        // If the app isn't opened within 800ms, redirect to the web version
+        setTimeout(function () {
+            window.location = webURL;
+        }, 800);
+    }
+        function openInApp(event, webURL) {
+        event.preventDefault();
+        var startTime = Date.now();
+        
+        // Open the app link
+        window.location = event.target.parentElement.href;
+
+        // If the app isn't opened in 800ms, redirect to web
+        setTimeout(function () {
+            if (Date.now() - startTime < 1000) {
+                window.location = webURL;
+            }
+        }, 800);
+    }
+        function showQR() {
+            document.getElementById("qrPopup").style.display = "block";
+        }
+
+        function closeQR() {
+            document.getElementById("qrPopup").style.display = "none";
+        }
+
+        function downloadQR() {
+            let qrImage = document.getElementById("qrImage").src;
+            let link = document.createElement("a");
+            link.href = qrImage;
+            link.download = "whatsappqr.png";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

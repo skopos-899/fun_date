@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Date Invitation</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f8f8;
+            padding: 18.75px;
+            font-family: Arial, sans-serif;
+        }
+
+        .scene {
+            position: relative;
+            width: 100%;
+            max-width: 562.5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 28.125px;
+        }
+
+        /* Picture container styling */
+        .picture-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            overflow: hidden;
+            margin-bottom: 18.75px;
+            border-radius: 18.75px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .picture-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .question-answer-container {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 16px;
+            border-radius: 18.75px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 28.125px;
+        }
+
+        .question-container {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .button-container {
+            margin-top: 28.125px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .button-link {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 14.0625px 28.125px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16.875px;
+            border-radius: 7.5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .button-link.previous {
+            background-color: #008CBA;
+        }
+
+        .button-link:hover {
+            background-color: #3e8e41;
+        }
+
+        .button-link.previous:hover {
+            background-color: #0077a3;
+        }
+
+        /* Media Query for small screens */
+        @media (max-width: 480px) {
+            .question-container {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .button-link {
+                font-size: 13.125px;
+                padding: 7.5px 15px;
+            }
+
+            .picture-container {
+                max-width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <!-- Picture -->
+        <div class="picture-container">
+            <img src="couple-3581038.jpg" alt="Girl in Saree">
+        </div>
+
+        <!-- Combined question and input field container -->
+        <div class="question-answer-container">
+            <div class="question-container">
+                <p>I had a great time making this for you, would you be open to chatting with me? 😊</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-container">
+        <a href="social.html" class="button-link previous">Yes</a>
+        <button class="button-link" id="no-button" onclick="toggleText()">No</button>
+    </div>
+
+    <script>
+        let texts = [
+            "No", 
+            "Embrace the Adventure na yaar?", 
+            "Don't you wanna continue the Journey?", 
+            "I Need Some Time", 
+            "Begin the Conversation? plz"
+        ];
+        let currentIndex = 0;
+
+        function toggleText() {
+            currentIndex = (currentIndex + 1) % texts.length; // Loop back to the first text after the last one
+            var noButton = document.getElementById("no-button");
+            noButton.innerHTML = texts[currentIndex];
+            // Optional: Change button color for different texts
+            if (currentIndex === 1) {
+                noButton.style.backgroundColor = "#FF9800"; // Maybe Later color
+            } else if (currentIndex === 2) {
+                noButton.style.backgroundColor = "#FF5722"; // Not Now color
+            } else if (currentIndex === 3) {
+                noButton.style.backgroundColor = "#8BC34A"; // Need Time color
+            } else if (currentIndex === 4) {
+                noButton.style.backgroundColor = "#3F51B5"; // Let’s See color
+            } else {
+                noButton.style.backgroundColor = "#4CAF50"; // Default color
+            }
+        }
+    </script>
+</body>
+</html>
