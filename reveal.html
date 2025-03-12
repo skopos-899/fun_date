@@ -6,86 +6,88 @@
     <title>A Letter to You</title>
     <style>
         /* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Body and Background Setup */
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #333;
-    overflow: hidden;
-}
+        /* Body and Background Setup */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Changed to min-height */
+            color: #333;
+            overflow: auto; /* Changed to auto to allow scrolling */
+            min-width: 375px; /* Added minimum width */
+            min-height: 665px; /* Added minimum height */
+        }
 
-/* Container for the page */
-.container {
-    text-align: center;
-    width: 90%;
-    max-width: 600px;
-}
+        /* Container for the page */
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px; /* Added padding for better spacing on small screens */
+        }
 
-/* Header */
-header h1 {
-    font-size: 36px;
-    margin-bottom: 30px;
-}
+        /* Header */
+        header h1 {
+            font-size: 30px; /* Adjusted font size for smaller screens */
+            margin-bottom: 20px; /* Adjusted margin for smaller screens */
+        }
 
-/* Letter Box and Styling */
-.letter {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: translateY(50px);
-    animation: reveal 2s forwards 1s;
-}
+        /* Letter Box and Styling */
+        .letter {
+            background-color: #fff;
+            padding: 20px; /* Adjusted padding for smaller screens */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: reveal 2s forwards 1s;
+        }
 
-/* Letter Styling */
-.letter p {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 18px;
-    text-align: left;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
+        /* Letter Styling */
+        .letter p {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px; /* Adjusted font size for smaller screens */
+            text-align: left;
+            line-height: 1.5; /* Adjusted line height for smaller screens */
+            margin-bottom: 12px; /* Adjusted margin for smaller screens */
+        }
 
-/* Footer Button */
-footer button {
-    margin-top: 30px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4B0082;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        /* Footer Button */
+        footer button {
+            margin-top: 20px; /* Adjusted margin for smaller screens */
+            padding: 8px 16px; /* Adjusted padding for smaller screens */
+            font-size: 14px; /* Adjusted font size for smaller screens */
+            background-color: #4B0082;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-footer button:hover {
-    background-color: #3F0071;
-}
+        footer button:hover {
+            background-color: #3F0071;
+        }
 
-/* Reveal Animation */
-@keyframes reveal {
-    0% {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+        /* Reveal Animation */
+        @keyframes reveal {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -96,9 +98,7 @@ footer button:hover {
         
         <section class="letter">
             <p>Hey Anamika,</p>
-            <p>I’ve been thinking a lot about the moments when i saw you because at that very moment i started liking you, might be your beauty but later did i understood that it was not just the beauty but your social well being as well and you were looking good in the pink saree though and the caption. My god, i thought you were an AI. Although there are many words I will always be wanting to say. Let's be the journey together.
-                By the way, Do your job well in upcoming Board exam.
-            </p>
+            <p>I’ve been thinking a lot about the moments when i saw you because at that very moment i started liking you, might be your beauty but later did i understood that it was not just the beauty but your social well being as well and you were looking good in the pink saree though and the caption. My god, i thought you were an AI. Although there are many words I will always be wanting to say. Let's be the journey together. By the way, Do your job well in upcoming Board exam.</p>
             <p>Here is a piece of you by me, I wanted you to know...</p>
         </section>
 
