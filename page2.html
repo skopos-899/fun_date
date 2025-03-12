@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boy Looking at Girl in Phone</title>
+    <style>
+        body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f8f8f8;
+        padding: 18.75px;
+    }
+
+
+    .scene {
+        position: relative;
+        width: 100%;
+        max-width: 562.5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 28.125px;
+    }
+
+    .boy {
+        font-size: 168.75px;
+        animation: lookAtPhone 2s infinite alternate;
+        margin-bottom: 18.75px;
+        position: relative; /* Needed for positioning eyes */
+        transform-origin: center bottom; /* Rotate from bottom */
+    }
+
+    .boy-eyes {
+        position: absolute;
+        top: 30%; /* Adjust as needed */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+    }
+
+    .phone-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .phone {
+        width: 131.25px;
+        height: 168.75px;
+        background: black;
+        border-radius: 18.75px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Add glow */
+    }
+
+    .girl-image {
+        max-width: 98%;
+        max-height: 98%;
+        object-fit: contain;
+    }
+
+    .thought {
+    background: white;
+    min-width: 200px; /* Minimum width */
+    min-height: 85px; /* Minimum height */
+    max-width: 400px; /* Maximum width */
+    padding: 16px;
+    border-radius: 18.75px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 15px;
+    margin-bottom: 18.75px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    word-break: break-word; /* Prevents long words from overflowing */
+}
+
+    @keyframes lookAtPhone {
+        0%, 100% {
+            transform: rotate(0deg) translateY(0); /* Reset head tilt */
+        }
+        50% {
+            transform: rotate(-10deg) translateY(-2px); /* Add head tilt and rotation */
+        }
+    }
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .button-container {
+        margin-top: 28.125px;
+        margin-bottom: 18.75px;
+        display: flex; /* Use flexbox for button layout */
+        justify-content: center; /* Center buttons horizontally */
+    }
+
+    .button-link {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 14.0625px 28.125px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16.875px;
+        border-radius: 7.5px;
+        margin: 0 5px; /* Add space between buttons */
+    }
+
+    .button-link.previous {
+        background-color: #008CBA; /* Change color for previous button */
+    }
+
+    .button-link:hover {
+        background-color: #3e8e41; /* Darker green on hover */
+    }
+
+    .button-link.previous:hover {
+        background-color: #0077a3; /* Darker blue on hover */
+    }
+    
+        /* Media Query for very small screens */
+        @media (max-width: 480px) {
+            .boy {
+                font-size: 93.75px; /* Decreased font-size by 25% */
+                margin-bottom: 18.75px; /* Decreased margin by 25% */
+            }
+    
+            .phone {
+                width: 75px; /* Decreased width by 25% */
+                height: 112.5px; /* Decreased height by 25% */
+            }
+    
+            .thought {
+                width: 46.875px; /* Decreased width by 25% */
+                height: 46.875px; /* Decreased height by 25% */
+                font-size: 9.375px; /* Decreased font-size by 25% */
+                margin-top: 18.75px; /* Decreased margin by 25% */
+            }
+    
+            .button-link {
+                font-size: 13.125px; /* Decreased font-size by 25% */
+                padding: 7.5px 15px; /* Decreased padding by 25% */
+            }
+        }
+    </style>
+</head>
+<body>
+    </button>
+    <div class="scene">
+        <div class="thought">"She walks in, draped in six yards of elegance ✨, radiating main-character energy. Periodt. 🔥 But give her five more steps, and she’s entangled in pleats, fighting for her life 🤦‍♀️💀. A vision of grace—until gravity reminds her who’s boss. A saree-clad goddess 👑 with the soul of a sitcom protagonist 🎭."</div>
+        <div class="boy">
+    <div class="boy-eyes"></div>
+    👦
+</div>
+        <div class="phone-container"> <div class="phone">
+            <img src="woman-7943924_1920.png" alt="Girl in Saree" class="girl-image">
+        </div> </div>
+    </div>
+    <div class="button-container">
+        <a href="page1.html" class="button-link previous">&larr; Previous page</a>
+        <a href="page3.html" class="button-link">Next page &rarr;</a>
+    </div>
+</body>
+</html>

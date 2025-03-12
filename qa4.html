@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Date Invitation</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f8f8;
+            padding: 18.75px;
+        }
+
+        .scene {
+            position: relative;
+            width: 100%;
+            max-width: 562.5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 28.125px;
+        }
+
+        /* Picture container styling */
+        .picture-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 400px; /* You can adjust this max-width if needed */
+            height: 250px; /* Set a fixed height to maintain aspect ratio */
+            overflow: hidden; /* Prevents image overflow if the aspect ratio is different */
+            margin-bottom: 18.75px;
+        }
+
+        .picture-container img {
+            width: 100%; /* Ensures the image takes up the full container width */
+            height: 100%; /* Ensures the image covers the full container height */
+            object-fit: cover; /* Ensures the image covers the container without distortion */
+            border-radius: 18.75px; /* Round corners */
+        }
+
+        .question-answer-container {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 16px;
+            border-radius: 18.75px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 28.125px;
+        }
+
+        .question-container {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .input_field {
+            width: 100%;
+            margin-top: 12px;
+            position: relative;
+        }
+
+        .input_field input[type="text"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            font-family: sans-serif;
+        }
+
+        .input_field input[type="text"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        .input_field input[type="text"]::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .input_field input[type="text"]:hover {
+            background-color: #f9f9f9;
+        }
+
+        .input_field input[type="text"] {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container {
+            margin-top: 28.125px;
+            margin-bottom: 18.75px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .button-link {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 14.0625px 28.125px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16.875px;
+            border-radius: 7.5px;
+            margin: 0 5px;
+        }
+
+        .button-link.previous {
+            background-color: #008CBA;
+        }
+
+        .button-link:hover {
+            background-color: #3e8e41;
+        }
+
+        .button-link.previous:hover {
+            background-color: #0077a3;
+        }
+
+        /* Media Query for small screens */
+        @media (max-width: 480px) {
+            .question-container {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .button-link {
+                font-size: 13.125px;
+                padding: 7.5px 15px;
+            }
+
+            .input_field {
+                width: 100%;
+                margin-top: 12px;
+            }
+
+            .input_field input[type="text"] {
+                font-size: 14px;
+            }
+
+            .picture-container {
+                max-width: 100%; /* Full width for smaller screens */
+                height: 200px; /* Adjust height on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <!-- Picture -->
+        <div class="picture-container">
+            <img src="volleyball-520093.jpg" alt="sports">
+        </div>
+
+        <!-- Combined question and input field container -->
+        <div class="question-answer-container">
+            <div class="question-container">
+                <p>What's your favourite sports 🏆🏅</p>
+            </div>
+            <div class="input_field">
+                <input type="text" id="message" placeholder="we can play together sometimes..." required>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-container">
+        <a href="page3.html" class="button-link previous">&larr; Previous page</a>
+        <a href="qa5.html" class="button-link" id="nextPageBtn">Next page &rarr;</a>
+    </div>
+
+    <script>
+        // Input validation
+        document.getElementById('nextPageBtn').addEventListener('click', function(event) {
+            var messageInput = document.getElementById('message').value.trim();
+
+            // Check if the input is empty
+            if (messageInput === "") {
+                alert("Please answer the question before proceeding.");
+                event.preventDefault(); // Prevents navigating to the next page
+                return;
+            }
+
+            // Check if the input length is at least 3 characters
+            if (messageInput.length < 3) {
+                alert("Please provide a more detailed answer (at least 3 characters).");
+                event.preventDefault(); // Prevents navigating to the next page
+            }
+        });
+    </script>
+</body>
+</html>
