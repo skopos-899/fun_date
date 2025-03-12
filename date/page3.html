@@ -23,36 +23,6 @@
             font-family: sans-serif;
         }
 
-        /* Sound Button */
-        .sound-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            outline: none;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: fixed;  /* Fix the button position */
-            top: 20px;  /* Adjust vertical position */
-            right: 20px;  /* Adjust horizontal position */
-            z-index: 1000;  /* Make sure it's above other elements */
-        }
-
-        .icon {
-            width: 24px;
-            height: 24px;
-        }
-
-        .play-icon {
-            display: block;
-        }
-
-        .pause-icon {
-            display: none;
-        }
-
          /* Modal (Popup) */
          .modal {
             display: none; /* Hidden by default */
@@ -87,15 +57,6 @@
 
         .modal button:hover {
             background-color: #3e8e41;
-        }
-
-        /* Toggle visibility when paused */
-        .sound-button.paused .play-icon {
-            display: none;
-        }
-
-        .sound-button.paused .pause-icon {
-            display: block;
         }
 
 
@@ -248,22 +209,6 @@
 </head>
 
 <body>
-
-    <!-- Play/Pause Sound Button -->
-    <button id="soundToggleButton" class="sound-button">
-        <!-- Play Icon -->
-        <svg class="icon play-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 5v14l11-7z" fill="black"/>
-        </svg>
-        <!-- Pause Icon -->
-        <svg class="icon pause-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="black"/>
-        </svg>
-    </button>
-
-    <!-- Audio -->
-    <audio id="mySound" src="drums-274805.mp3"></audio>
-
     <!-- Boy Icon -->
     <div class="boy">
         <div class="boy-eyes"></div>
@@ -297,7 +242,7 @@
 
     <!-- Input Field -->
     <div class="input_field">
-        <input type="text" id="message" placeholder="को हौ तिमी?(eg. instaid,...)">
+        <input type="text" id="message" placeholder="को हौ तिमी?(eg. instaid, name mea...)">
     </div>
 
     <p> Don't worry, your data is safe in my heart 💕</p>
@@ -307,46 +252,27 @@
         <a href="page2.html" class="button-link previous">&larr; Previous</a>
         <a href="qa4.html" class="button-link">Next &rarr;</a>
     </div>
-
-    <!-- Modal (Popup) -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <p>Click the play button to start the sound</p>
+            <p></p>
             <button id="closeModal">Got it!</button>
         </div>
     </div>
+    
+
     <script>
         const soundButton = document.getElementById("soundToggleButton");
         const sound = document.getElementById("mySound");
         const modal = document.getElementById("modal");
         const closeModalButton = document.getElementById("closeModal");
 
-        // Show modal when the page loads
-        window.addEventListener('load', () => {
-            modal.style.display = 'flex';
-        });
-
-        // Toggle Play/Pause functionality
-        soundButton.addEventListener("click", () => {
-            if (sound.paused) {
-                sound.play();
-            } else {
-                sound.pause();
-            }
-            soundButton.classList.toggle("paused");
-            modal.style.display = 'none'; // Close modal after clicking play button
-        });
-
         // Close modal when user clicks "Got it!" button
         closeModalButton.addEventListener("click", () => {
             modal.style.display = 'none';
         });
 
-        // Ensure correct icon display when audio ends
-        sound.addEventListener("ended", () => soundButton.classList.remove("paused"));
-
     document.addEventListener("DOMContentLoaded", function () {
-        const validNames = ["Anamika", "noname", "Anamika_thapa_", "Anamika thapa", "nameless", "ring finger", "linguistic beauty"];
+        const validNames = ["Anamika", "no name", "Anamika_thapa_", "Anamika thapa", "nameless", "ring finger", "linguistic beauty"];
         const inputField = document.getElementById("message");
         const nextButton = document.querySelector(".button-link:not(.previous)");
         const modal = document.getElementById("modal");
