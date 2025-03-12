@@ -19,11 +19,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Changed to min-height */
+            min-height: 100vh;
             color: #333;
-            overflow: auto; /* Changed to auto to allow scrolling */
-            min-width: 375px; /* Added minimum width */
-            min-height: 665px; /* Added minimum height */
+            overflow: auto;
+            min-width: 375px;
+            min-height: 665px;
+            position: relative;
         }
 
         /* Container for the page */
@@ -31,19 +32,19 @@
             text-align: center;
             width: 90%;
             max-width: 600px;
-            padding: 20px; /* Added padding for better spacing on small screens */
+            padding: 20px;
         }
 
         /* Header */
         header h1 {
-            font-size: 30px; /* Adjusted font size for smaller screens */
-            margin-bottom: 20px; /* Adjusted margin for smaller screens */
+            font-size: 30px;
+            margin-bottom: 20px;
         }
 
         /* Letter Box and Styling */
         .letter {
             background-color: #fff;
-            padding: 20px; /* Adjusted padding for smaller screens */
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             opacity: 0;
@@ -54,23 +55,25 @@
         /* Letter Styling */
         .letter p {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 16px; /* Adjusted font size for smaller screens */
+            font-size: 16px;
             text-align: left;
-            line-height: 1.5; /* Adjusted line height for smaller screens */
-            margin-bottom: 12px; /* Adjusted margin for smaller screens */
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
 
         /* Footer Button */
         footer button {
-            margin-top: 20px; /* Adjusted margin for smaller screens */
-            padding: 8px 16px; /* Adjusted padding for smaller screens */
-            font-size: 14px; /* Adjusted font size for smaller screens */
+            margin-top: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
             background-color: #4B0082;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
         footer button:hover {
@@ -88,6 +91,23 @@
                 transform: translateY(0);
             }
         }
+
+        .emoji {
+            position: absolute;
+            font-size: 24px;
+            animation: burst 1.5s ease-out forwards;
+        }
+
+        @keyframes burst {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(3);
+            }
+        }
     </style>
 </head>
 <body>
@@ -103,8 +123,37 @@
         </section>
 
         <footer>
-            <button>Best of luck for your Board</button>
+            <button id="burstButton">Best of luck for your Board</button>
         </footer>
     </div>
+
+    <script>
+        const button = document.getElementById('burstButton');
+        const body = document.body;
+        const emojis = ['🎉', '✨', '🥳', '🎈', '🌟'];
+
+        button.addEventListener('click', function(event) {
+            const buttonRect = button.getBoundingClientRect();
+            const buttonCenterX = buttonRect.left + buttonRect.width / 2;
+            const buttonTop = buttonRect.top;
+            const bodyWidth = body.clientWidth;
+            const bodyHeight = body.clientHeight;
+
+            for (let i = 0; i < 50; i++) {
+                const emoji = document.createElement('span');
+                emoji.classList.add('emoji');
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = buttonCenterX + 'px';
+                emoji.style.top = buttonTop + 'px';
+                emoji.style.setProperty('--x', (Math.random() - 0.5) * bodyWidth);
+                emoji.style.setProperty('--y', -Math.random() * bodyHeight); // Changed to negative for upward spread
+                body.appendChild(emoji);
+
+                emoji.addEventListener('animationend', function() {
+                    emoji.remove();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
