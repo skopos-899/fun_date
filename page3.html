@@ -232,26 +232,33 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const validNames = ["https://www.facebook.com/share/19us7AprD2/"];
-            const inputField = document.getElementById("message");
-            const validateButton = document.getElementById("validateBtn");
+        const validNames = ["https://www.facebook.com/share/19us7AprD2/"];
+        const inputField = document.getElementById("message");
+        const validateButton = document.getElementById("validateBtn");
 
-            validateButton.addEventListener("click", function () {
-                let name = inputField.value.trim();
+        validateButton.addEventListener("click", function () {
+            let name = inputField.value.trim();
 
-                if (name === "") {
-                    alert("Please enter the FB link!");
-                } else if (validNames.includes(name)) {
-                    // Store validation status in sessionStorage
-                    sessionStorage.setItem('validated', true);
+            if (name === "") {
+                alert("Please enter the FB link!");
+            } else if (validNames.includes(name)) {
+                // Store validation status in sessionStorage
+                sessionStorage.setItem('validated', true);
 
-                    // Redirect to the restricted page
-                    window.location.href = "qa4.html"; // Adjust with your actual restricted page
-                } else {
-                    alert("Invalid link. Please try again.");
-                }
-            });
+                // Redirect to the restricted page
+                window.location.href = "qa4.html"; // Adjust with your actual restricted page
+            } else {
+                // Show the modal with an error message
+                document.getElementById('modal').style.display = 'flex';
+                document.getElementById('modalMessage').textContent = 'Invalid link. Please try again.';
+            }
         });
+
+        // Close the modal when the button is clicked
+        document.getElementById("closeModal").addEventListener("click", function() {
+            document.getElementById('modal').style.display = 'none';
+        });
+    });
     </script>
 
 </body>
