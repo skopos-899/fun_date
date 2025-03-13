@@ -234,35 +234,22 @@
         document.addEventListener("DOMContentLoaded", function () {
             const validNames = ["https://www.facebook.com/share/19us7AprD2/"];
             const inputField = document.getElementById("message");
-            const nextButton = document.getElementById("nextBtn");
-            const modal = document.getElementById("modal");
-            const modalMessage = document.getElementById("modalMessage");
-            const closeModalButton = document.getElementById("closeModal");
+            const validateButton = document.getElementById("validateBtn");
 
-            nextButton.addEventListener("click", function (event) {
-                event.preventDefault();
+            validateButton.addEventListener("click", function () {
                 let name = inputField.value.trim();
 
                 if (name === "") {
-                    showModal("validation cannot be done with empty placeholder!");
-                } else if (!validNames.includes(name)) {
-                    if (name.length < 10) {
-                        showModal("invalid link!");
-                    } else {
-                        showModal("If you're sure this is your real FB ID link, this page might be for someone else!");
-                    }
+                    alert("Please enter the FB link!");
+                } else if (validNames.includes(name)) {
+                    // Store validation status in sessionStorage
+                    sessionStorage.setItem('validated', true);
+
+                    // Redirect to the restricted page
+                    window.location.href = "qa4.html"; // Adjust with your actual restricted page
                 } else {
-                    window.location.href = nextButton.getAttribute("href");
+                    alert("Invalid link. Please try again.");
                 }
-            });
-
-            function showModal(message) {
-                modalMessage.textContent = message;
-                modal.style.display = "flex";
-            }
-
-            closeModalButton.addEventListener("click", function () {
-                modal.style.display = "none";
             });
         });
     </script>
