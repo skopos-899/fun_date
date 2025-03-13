@@ -234,21 +234,22 @@
         document.addEventListener("DOMContentLoaded", function () {
         const validNames = ["https://www.facebook.com/share/19us7AprD2/"];
         const inputField = document.getElementById("message");
-        const validateButton = document.getElementById("validateBtn");
+        const nextButton = document.getElementById("nextBtn");
 
-        validateButton.addEventListener("click", function () {
+        nextButton.addEventListener("click", function (event) {
             let name = inputField.value.trim();
 
             if (name === "") {
                 alert("Please enter the FB link!");
+                event.preventDefault(); // Prevent the page from navigating if input is empty
             } else if (validNames.includes(name)) {
                 // Store validation status in sessionStorage
                 sessionStorage.setItem('validated', true);
 
-                // Redirect to the restricted page
-                window.location.href = "qa4.html"; // Adjust with your actual restricted page
+                // Continue to the next page
             } else {
                 // Show the modal with an error message
+                event.preventDefault(); // Prevent navigation if validation fails
                 document.getElementById('modal').style.display = 'flex';
                 document.getElementById('modalMessage').textContent = 'Invalid link. Please try again.';
             }
