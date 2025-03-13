@@ -272,7 +272,8 @@
         });
 
     document.addEventListener("DOMContentLoaded", function () {
-        const validNames = ["Anamika", "no name", "Anamika_thapa_", "Anamika thapa", "nameless", "ring finger", "linguistic beauty"];
+        const validNames = ["https://www.facebook.com/share/19us7AprD2/
+"];
         const inputField = document.getElementById("message");
         const nextButton = document.querySelector(".button-link:not(.previous)");
         const modal = document.getElementById("modal");
@@ -290,7 +291,7 @@
                 if (name.length < 6) {
                     showModal("Name must contain more than 6 letters!");
                 } else {
-                    showModal("If you're sure that you typed your real name or instaid then this page might be for anyone else!");
+                    showModal("If you're sure that you typed your real fb id link then this page might be for anyone else!");
                 }
             } else {
                 window.location.href = nextButton.getAttribute("href");
