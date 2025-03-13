@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,20 +17,19 @@
             padding: 18.75px;
         }
 
-        button,
-        a {
+        button, a {
             font-family: sans-serif;
         }
 
-         /* Modal (Popup) */
-         .modal {
-            display: none; /* Hidden by default */
+        /* Modal (Popup) */
+        .modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            background-color: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
         }
@@ -58,7 +56,6 @@
         .modal button:hover {
             background-color: #3e8e41;
         }
-
 
         /* Boy & Phone Section */
         .boy {
@@ -95,18 +92,16 @@
 
         /* Animation */
         @keyframes lookAtPhone {
-            0%,
-            100% {
+            0%, 100% {
                 transform: rotate(0deg) translateY(0);
             }
-
             50% {
                 transform: rotate(-10deg) translateY(-2px);
             }
         }
 
-         /* Mobile Responsiveness */
-         @media (max-width: 480px) {
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
             .boy {
                 font-size: 93.75px;
             }
@@ -148,14 +143,6 @@
             font-style: italic;
         }
 
-        .input_field input[type="text"]:hover {
-            background-image: linear-gradient(to bottom, #f9f9f9, #f0f0f0);
-        }
-
-        .input_field input[type="text"] {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
         /* Button Styles */
         .button-container {
             margin-top: 28.125px;
@@ -189,31 +176,12 @@
             background-color: #0077a3;
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 480px) {
-            .boy {
-                font-size: 93.75px;
-            }
-
-            .phone {
-                width: 75px;
-                height: 112.5px;
-            }
-
-            .button-link {
-                font-size: 13.125px;
-                padding: 7.5px 15px;
-            }
-        }
     </style>
 </head>
-
 <body>
+
     <!-- Boy Icon -->
-    <div class="boy">
-        <div class="boy-eyes"></div>
-        👦
-    </div>
+    <div class="boy">👦</div>
 
     <!-- Phones with Girl Images -->
     <div class="phone-row">
@@ -227,88 +195,77 @@
             <img src="woman-7943924_1920.png" alt="Girl 3" class="girl-image">
         </div>
     </div>
-    <div class="phone-text">
-    <p>को हौ तिमी?<br>
-    जो सपनाभरि हँसाएर जाँदछौ<br>
-    को हौ तिमी?<br>
-    जो कल्पना बाहिर निस्कन दिँदैनौ<br>
-    चिनिन नि<br>
-    तर सुन्दर छ संसार बिपनाभन्दा त्यहीँ<br>
-    गाह्रो छ नि पर्खन त, धर्ज्य सिकिरहेछु<br>
-    कुनै दिन भेट्ला भनी माया बचाइरहेछु<br>
-    को हौ तिमी?</p>
 
+    <!-- Text -->
+    <div class="phone-text">
+        <p>को हौ तिमी?<br>
+            जो सपनाभरि हँसाएर जाँदछौ<br>
+            को हौ तिमी?<br>
+            जो कल्पना बाहिर निस्कन दिँदैनौ<br>
+            चिनिन नि<br>
+            तर सुन्दर छ संसार बिपनाभन्दा त्यहीँ<br>
+            गाह्रो छ नि पर्खन त, धर्ज्य सिकिरहेछु<br>
+            कुनै दिन भेट्ला भनी माया बचाइरहेछु<br>
+            को हौ तिमी?</p>        
     </div>
 
     <!-- Input Field -->
     <div class="input_field">
-        <input type="text" id="message" placeholder="को हौ तिमी?(eg. fb id link...)">
+        <input type="text" id="message" placeholder="को हौ तिमी? (eg. fb id link...)">
     </div>
 
-    <p> Don't worry, your data is safe in my heart 💕</p>
+    <p>Don't worry, your data is safe in my heart 💕</p>
 
-    <!-- Button Links -->
+    <!-- Buttons -->
     <div class="button-container">
         <a href="page2.html" class="button-link previous">&larr; Previous</a>
-        <a href="qa4.html" class="button-link">Next &rarr;</a>
+        <a href="qa4.html" class="button-link" id="nextBtn">Next &rarr;</a>
     </div>
+
+    <!-- Modal -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <p></p>
+            <p id="modalMessage"></p>
             <button id="closeModal">Got it!</button>
         </div>
     </div>
-    
 
     <script>
-        const soundButton = document.getElementById("soundToggleButton");
-        const sound = document.getElementById("mySound");
-        const modal = document.getElementById("modal");
-        const closeModalButton = document.getElementById("closeModal");
+        document.addEventListener("DOMContentLoaded", function () {
+            const validNames = ["https://www.facebook.com/share/19us7AprD2/"];
+            const inputField = document.getElementById("message");
+            const nextButton = document.getElementById("nextBtn");
+            const modal = document.getElementById("modal");
+            const modalMessage = document.getElementById("modalMessage");
+            const closeModalButton = document.getElementById("closeModal");
 
-        // Close modal when user clicks "Got it!" button
-        closeModalButton.addEventListener("click", () => {
-            modal.style.display = 'none';
-        });
+            nextButton.addEventListener("click", function (event) {
+                event.preventDefault();
+                let name = inputField.value.trim();
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const validNames = ["https://www.facebook.com/share/19us7AprD2/
-"];
-        const inputField = document.getElementById("message");
-        const nextButton = document.querySelector(".button-link:not(.previous)");
-        const modal = document.getElementById("modal");
-        const modalContent = document.querySelector(".modal-content p");
-        const modalCloseBtn = document.querySelector(".modal button");
-
-        nextButton.addEventListener("click", function (event) {
-            event.preventDefault();
-            let name = inputField.value.trim().toLowerCase();
-            let formattedName = validNames.find(n => n.toLowerCase() === name);
-
-            if (name === "") {
-                showModal("Name cannot be empty!");
-            } else if (!formattedName) {
-                if (name.length < 6) {
-                    showModal("Name must contain more than 6 letters!");
+                if (name === "") {
+                    showModal("validation cannot be done with empty placeholder!");
+                } else if (!validNames.includes(name)) {
+                    if (name.length < 6) {
+                        showModal("invalid link!");
+                    } else {
+                        showModal("If you're sure this is your real FB ID link, this page might be for someone else!");
+                    }
                 } else {
-                    showModal("If you're sure that you typed your real fb id link then this page might be for anyone else!");
+                    window.location.href = nextButton.getAttribute("href");
                 }
-            } else {
-                window.location.href = nextButton.getAttribute("href");
+            });
+
+            function showModal(message) {
+                modalMessage.textContent = message;
+                modal.style.display = "flex";
             }
+
+            closeModalButton.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
         });
-
-        function showModal(message) {
-            modalContent.textContent = message;
-            modal.style.display = "flex";
-        }
-
-        modalCloseBtn.addEventListener("click", function () {
-            modal.style.display = "none";
-        });
-    });
-
     </script>
+
 </body>
 </html>
-
