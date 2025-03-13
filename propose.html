@@ -15,6 +15,8 @@
             background-color: #f8f8f8;
             padding: 18.75px;
             font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
         }
 
         .scene {
@@ -27,7 +29,6 @@
             margin-bottom: 28.125px;
         }
 
-        /* Picture container styling */
         .picture-container {
             display: flex;
             justify-content: center;
@@ -57,12 +58,6 @@
             font-size: 18px;
             text-align: center;
             margin-bottom: 28.125px;
-        }
-
-        .question-container {
-            font-size: 18px;
-            margin-bottom: 12px;
-            color: #333;
         }
 
         .button-container {
@@ -98,33 +93,52 @@
             background-color: #0077a3;
         }
 
-        /* Media Query for small screens */
-        @media (max-width: 480px) {
-            .question-container {
-                font-size: 14px;
-                padding: 12px;
-            }
+        /* Bubble Styling */
+.fade-bubble {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    backdrop-filter: blur(12px);
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: popUp 2.5s ease-out forwards;
+    opacity: 1;
+}
 
-            .button-link {
-                font-size: 13.125px;
-                padding: 7.5px 15px;
-            }
+/* Pop Animation */
+@keyframes popUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(20px);
+    }
+    30% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.4) translateY(-30px);
+    }
+}
 
-            .picture-container {
-                max-width: 100%;
-                height: 200px;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="scene">
-        <!-- Picture -->
         <div class="picture-container">
             <img src="couple-3581038.jpg" alt="Girl in Saree">
         </div>
 
-        <!-- Combined question and input field container -->
         <div class="question-answer-container">
             <div class="question-container">
                 <p>I had a great time making this for you, would you be open to chatting with me? 😊</p>
@@ -132,39 +146,66 @@
         </div>
     </div>
 
-    <!-- Buttons -->
     <div class="button-container">
-        <a href="social.html" class="button-link previous">Yes</a>
-        <button class="button-link" id="no-button" onclick="toggleText()">No</button>
+        <a href="social.html" class="button-link previous">Yes 😊❤️</a>
+        <button class="button-link" id="no-button" onclick="generateText()">No</button>
     </div>
 
     <script>
-        let texts = [
-            "No", 
-            "Abhi na jao chhodkar", 
-            "ke dil abhi bhara nahi", 
-            "Dine chho saath juni bhari", 
-            "Najauna yaar yasari chhodi"
-        ];
-        let currentIndex = 0;
+        function generateText() {
+    const messages = [
+        { text: "Say Yes! 😊", color: "#FF4081" },
+        { text: "Come on! 😍", color: "#FFEB3B" },
+        { text: "Don't say No! 🥺", color: "#4CAF50" },
+        { text: "Just say Yes! ❤️", color: "#FF5722" },
+        { text: "We're waiting! 😁", color: "#2196F3" },
+        { text: "Yes, yes, yes! 🎉", color: "#9C27B0" }
+    ];
 
-        function toggleText() {
-            currentIndex = (currentIndex + 1) % texts.length; // Loop back to the first text after the last one
-            var noButton = document.getElementById("no-button");
-            noButton.innerHTML = texts[currentIndex];
-            // Optional: Change button color for different texts
-            if (currentIndex === 1) {
-                noButton.style.backgroundColor = "#FF9800"; // Maybe Later color
-            } else if (currentIndex === 2) {
-                noButton.style.backgroundColor = "#FF5722"; // Not Now color
-            } else if (currentIndex === 3) {
-                noButton.style.backgroundColor = "#8BC34A"; // Need Time color
-            } else if (currentIndex === 4) {
-                noButton.style.backgroundColor = "#3F51B5"; // Let’s See color
-            } else {
-                noButton.style.backgroundColor = "#4CAF50"; // Default color
+    let placedBubbles = [];
+
+    function getRandomPosition() {
+        let maxAttempts = 50; // Limit retries to avoid infinite loops
+        for (let i = 0; i < maxAttempts; i++) {
+            let size = Math.random() * 50 + 80; // Random size between 80px-130px
+            let x = Math.random() * (window.innerWidth - size);
+            let y = Math.random() * (window.innerHeight - size);
+
+            // Check for overlap
+            let overlapping = placedBubbles.some(bubble => {
+                let dx = bubble.x - x;
+                let dy = bubble.y - y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                return distance < bubble.size; // Avoid overlap
+            });
+
+            if (!overlapping) {
+                placedBubbles.push({ x, y, size });
+                return { x, y, size };
             }
         }
+        return { x: Math.random() * (window.innerWidth - 100), y: Math.random() * (window.innerHeight - 100), size: 100 };
+    }
+
+    for (let i = 0; i < 10; i++) {
+        let { x, y, size } = getRandomPosition();
+        let bubble = document.createElement("div");
+        bubble.classList.add("fade-bubble");
+
+        let randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        bubble.innerHTML = randomMessage.text;
+        bubble.style.color = randomMessage.color;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${x}px`;
+        bubble.style.top = `${y}px`;
+
+        document.body.appendChild(bubble);
+
+        // Random delay to make the animation more natural
+        setTimeout(() => bubble.remove(), 2500 + Math.random() * 500);
+    }
+}
     </script>
 </body>
 </html>
