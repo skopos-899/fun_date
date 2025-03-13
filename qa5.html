@@ -176,6 +176,14 @@
             // Proceed with the next page if validation passes
             window.location.href = "animation.html";
         }
+        // Check if user has passed the validation
+        window.onload = function() {
+            // Check for sessionStorage or localStorage
+            if (!sessionStorage.getItem('validated')) {
+                // If not validated, redirect to the validation page (index.html)
+                window.location.href = "page3.html";
+            }
+        };
     </script>
 </body>
 </html>
